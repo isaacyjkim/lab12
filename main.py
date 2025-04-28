@@ -54,10 +54,22 @@ def main():
             tasks.add_task(desc, date, time)
             print() 
         
+        elif choice == 5: 
+            date = get_date()
+            print(f'Tasks due on {date}:')
+            count = 1 
+            for task in tasks: 
+                task_month, task_day, task_year = map(int, task._date.strip().split('/'))
+                search_month, search_day, search_year = map(int, date.strip().split('/'))
     
-            
+                if (task_month == search_month and 
+                    task_day == search_day and 
+                    task_year == search_year): 
+                    print(f"{count}. {task}")
+                    count+=1
+            print()
         
-    
+
         
 main() 
 
