@@ -29,7 +29,7 @@ class Tasklist:
     
     def mark_complete(self): 
         if self._tasks: 
-            self._tasks.pop() 
+            self._tasks.pop(0) 
 
         self.save_file()
 
