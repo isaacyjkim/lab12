@@ -7,10 +7,10 @@ class Tasklist:
         self._tasks = [] 
         with open('tasklist-1.txt', 'r') as f: 
             for line in f: 
-                task = Task(line.strip('\n').split(',')[0],
-                            line.strip('\n').split(',')[1], 
-                            line.strip('\n').split(',')[2])
-                self._tasks.append(task) 
+                tasks = line.strip('\n').split(',')
+                self._tasks.append(Task(tasks[0], tasks[1], tasks[2])) 
+        self._tasks.sort()
+        self.save_file()
         f.close()
 
 
@@ -36,7 +36,7 @@ class Tasklist:
     def save_file(self): 
         with open('tasklist-1.txt', 'w') as f:
             for task in self._tasks: 
-                f.write(f'{task._description}, {task._date}, {task._time}\n') 
+                f.write(f'{task._description},{task._date},{task._time}\n') 
 
     def __len__(self): 
         return len(self._tasks)
