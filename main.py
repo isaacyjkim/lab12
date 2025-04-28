@@ -10,7 +10,7 @@ def main_menu():
             '4. Add new task'
             '5. Search by date'
             '6. Save and quit')
-    
+
 def get_date():
     print('Enter due date:')
     month = check_input.get_int_range('Enter month: ', 1, 12)
@@ -28,7 +28,6 @@ def main():
     with open('tasklist-1.txt', 'rw') as f:
         list = f.readlines()
         
-    
 
 
     

@@ -1,39 +1,55 @@
+from task import Task
 
 class Tasklist: 
 
 
     def __init__(self):
         self._tasks = [] 
-        self._n = 0
         with open('tasklist-1.txt', 'r') as f: 
             for line in f: 
-                task = line.strip('\n').split(',')
+                task = Task(line.strip('\n').split(','))
                 self._tasks.append(task) 
         f.close()
 
 
     def add_task(self, desc, date, time): 
-        pass 
+        self._tasks.append(Task(desc, date, time)) 
+        self._tasks.sort()
+        self.save_file() 
 
+        
 
     def get_current_task(self): 
-        pass 
+        return self._tasks[0] if self._tasks else None
+    
+    
 
     
     def mark_complete(self): 
-        pass 
+        if self._tasks: 
+            self._tasks.pop() 
+
+        self.save_file()
 
     def save_file(self): 
-        pass 
+        with open('tasklist-1.txt', 'w') as f:
+            for task in self._tasks: 
+                f.write(f'{task._description}, {task._date}, {task._time}\n') 
 
     def __len__(self): 
-        pass 
+        return len(self._tasks)
 
     def __iter__(self): 
-        pass 
+        self._n = 0 
+        return self
 
     def __next__(self): 
-        pass 
+        if self._n < len(self._tasks): 
+            task = self._tasks[self._n]
+            self._n += 1 
+            return task
+        else: 
+            raise StopIteration
         
 
     # Test  method
