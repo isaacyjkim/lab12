@@ -7,7 +7,9 @@ class Tasklist:
         self._tasks = [] 
         with open('tasklist-1.txt', 'r') as f: 
             for line in f: 
-                task = Task(line.strip('\n').split(','))
+                task = Task(line.strip('\n').split(',')[0],
+                            line.strip('\n').split(',')[1], 
+                            line.strip('\n').split(',')[2])
                 self._tasks.append(task) 
         f.close()
 

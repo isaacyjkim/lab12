@@ -5,10 +5,10 @@ class Task:
         self._time = time
     
     def __str__(self):
-        return (f'{self._description} - Due: {self.date} at {self.time}')
+        return (f'{self._description} - Due: {self._date} at {self._time}')
     
     def __repr__(self):
-        return (f'{self._description} - Due: {self.date} at {self.time}')
+        return (f'{self._description} - Due: {self._date} at {self._time}')
     
     def __lt__(self,other):
         year, month, day = self.date.split('/').strip()

@@ -1,15 +1,17 @@
 import task 
+import tasklist
 import check_input
 
 def main_menu():
-    print(f'-Tasklist- '
-            'Tasks to complete: {}' 
-            '1. Display current task'
-            '2. Display all tasks'
-            '3. Mark current task complete'
-            '4. Add new task'
-            '5. Search by date'
-            '6. Save and quit')
+    print(f'-Tasklist-\n'
+            'Tasks to complete: {}\n' 
+            '1. Display current task\n'
+            '2. Display all tasks\n'
+            '3. Mark current task complete\n'
+            '4. Add new task\n'
+            '5. Search by date\n'
+            '6. Save and quit\n')
+    
 
 def get_date():
     print('Enter due date:')
@@ -25,9 +27,12 @@ def get_time():
     return f'{hour:01d}:{minute:01d}'
 
 def main():
-    with open('tasklist-1.txt', 'rw') as f:
-        list = f.readlines()
+    tasks = tasklist.Tasklist()
+    main_menu()
+
+    
         
+main() 
 
 
     
