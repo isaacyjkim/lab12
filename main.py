@@ -3,6 +3,8 @@ import tasklist
 import check_input
 
 def main_menu(num_tasks):
+    """
+    Displays the main menu and returns the user's choice."""
     print(f'-Tasklist-\n'
             f'Tasks to complete: {num_tasks} \n' 
             '1. Display current task\n'
@@ -16,6 +18,9 @@ def main_menu(num_tasks):
     
 
 def get_date():
+    """
+    Prompts the user for a date and returns it in the format MM/DD/YYYY.
+    """
     print('Enter due date:')
     month = check_input.get_int_range('Enter month: ', 1, 12)
     day = check_input.get_int_range('Enter day: ', 1, 31)
@@ -23,38 +28,53 @@ def get_date():
     return f'{month:01d}/{day:01d}/{year}'
 
 def get_time():
+    """
+    Prompts the user for a time and returns it in the format HH:MM.
+    """
     print('Enter time:')
     hour = check_input.get_int_range('Enter hour: ', 0, 23)
     minute = check_input.get_int_range('Enter minute: ', 0, 59)
     return f'{hour:01d}:{minute:01d}'
 
 def main():
+    """
+    Main function to run the task list program."""
+
+    # Initialize the task list
     tasks = tasklist.Tasklist()
     choice = 0 
     while choice != 6: 
         choice = main_menu(len(tasks))
 
+        
         if choice == 1: 
+            # Display the current task
             print(f'{tasks.get_current_task()}\n')
         elif choice == 2:
+            # Display all tasks
             count = 1 
             for task in tasks: 
                 print(f"{count}. {task}")
                 count+=1
             print()
         elif choice == 3: 
+            # Mark the current task as complete
+            # And display the new current task
             print(f'Marking current task as complete: {tasks.get_current_task()}') 
             tasks.mark_complete()
             print(f'New current task is: {tasks.get_current_task()}\n')
 
         elif choice == 4: 
+            # Add a new task
             desc = input('Enter a task: ') 
             date = get_date()
             time = get_time() 
             tasks.add_task(desc, date, time)
             print() 
         
-        elif choice == 5: 
+        elif choice == 5:
+            # Search for tasks by date
+            # Display all tasks due on that date  
             date = get_date()
             print(f'Tasks due on {date}:')
             count = 1 
@@ -68,8 +88,6 @@ def main():
                     print(f"{count}. {task}")
                     count+=1
             print()
-        
-
         
 main() 
 
